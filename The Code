@@ -1,0 +1,10 @@
+def S_nameS(name):
+    sorted_list = []
+    for name in names:
+        last_name, first_name = name.split(" ")
+        sorted_list.append(f"{last_name}, {first_name}")
+    sorted_list.sort()
+    return sorted_list
+names = ["Name A", "Name B", "Name C" ]
+sorted_names = S_nameS(names)
+print(sorted_names)
