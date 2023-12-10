@@ -1,0 +1,41 @@
+import time
+import random
+import string
+import matplotlib.pyplot as plt
+
+def name_generator(size):
+    names = []
+    for _ in range(size):
+        first_name = ''.join(random.choices(string.ascii_uppercase, k=3))
+        last_name = ''.join(random.choices(string.ascii_uppercase, k=3))
+        names.append({'First Name': first_name, 'Last Name': last_name})
+    return names
+
+def Spesial_Name(names):
+    first_names = set()
+    last_names = set()
+
+    for name in names:
+        first_names.add(name['First Name'])
+        last_names.add(name['Last Name'])
+
+    return len(first_names), len(last_names)
+
+sizes = [10, 50, 250, 350, 750, 1000]
+
+execution_times = []
+for size in sizes:
+    random_names = name_generator(size)
+
+    start_time = time.time()
+    unique_first_names, unique_last_names = Spesial_Name(random_names)
+    end_time = time.time()
+
+    print(f"Data Size: {size}, First Names: {unique_first_names}, Last Names: {unique_last_names}, Execution Time: {end_time - start_time} seconds")
+    execution_times.append(end_time - start_time)
+
+plt.plot(sizes, execution_times)
+plt.xlabel('Data Size')
+plt.ylabel('Execution Time')
+plt.title('Execution Time for Different Data Sizes')
+plt.show()
